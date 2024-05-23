@@ -1,0 +1,10 @@
+Package: rmcmc
+Type: Package
+Title: rmcmc
+Version: 0.1.0
+Author: Carsten Stahl (GitHub: Carsten134)
+Description: MCMC-implementations for sampling and Bayesian stats.
+License: MIT
+Encoding: UTF-8
+LazyData: false
+RoxygenNote: 7.3.1
