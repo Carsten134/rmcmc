@@ -14,7 +14,7 @@ library(devtools)
 
 Then execute:
 ```{R}
-install_github("Carsten134/rmcmc")
+install_github("https://github.com/Carsten134/rmcmc")
 ```
 
 Once you installed the package you can just add it to your library like any other package:
