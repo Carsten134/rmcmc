@@ -41,6 +41,6 @@ Returns sample of size \code{n} using the Metropolis Hastings algorithm.
  iterations <- 10000
 
  # Run the Metropolis-Hastings algorithm
- samples <- metropolis_hastings(P, q, q_sample, x0, iterations)
+ samples <- metropolis_hastings(x0, P, q, q_sample, iterations)
 
 }

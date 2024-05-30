@@ -22,7 +22,7 @@
 #'  iterations <- 10000
 #'
 #'  # Run the Metropolis-Hastings algorithm
-#'  samples <- metropolis_hastings(P, q, q_sample, x0, iterations)
+#'  samples <- metropolis_hastings(x0, P, q, q_sample, iterations)
 #'
 #' @param x_0  numeric staring point of the marcov chain
 #' @param p desired distribution to sample from. Has to be a function
@@ -49,11 +49,18 @@ metropolis_hastings<- function(x_0, p, q, q_sample, n) {
     x. <- q_sample(x.)
 
     # determine acceptance probability
-    acceptance.term <- (p(x.)*q(x, x.)) / (p(x) * q(x., x))
-    alpha <- min(1, acceptance.term)
+    acceptance.term <- (p(x.)*q(x,x.)) / (p(x) *q(x., x))
+
+    if (is.na(acceptance.term)) {
+      alpha <- 0
+    } else {
+      alpha <- min(1, acceptance.term)
+    }
+
 
     # accept / reject
     u <- runif(1)
+
     if (u <= alpha) {
       # store value in the chain and iterate further
       x <- x.
