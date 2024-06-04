@@ -28,4 +28,8 @@ The documentation for every function is accessible with `?`. Enter in your R-Con
 ```
 
 ### Implemented functions
-We are in the very beginning stages of the package. Right now only the Metropolis Hastings algorithm is implemented. You can execute it with the `metropolis_hastings(...)` function.
+Right now we have implemented:
+- `metropolis_hastings`: metropolis hastings implementation (very slow a.t.m.)
+- `gibbs_samping`: gibb's sampling algorithm
+- `simple_slice`: slice sampling for unimodal distributions
+- `OneDSlice`: slice algorithm for univariate distributions
