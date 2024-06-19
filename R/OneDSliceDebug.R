@@ -97,14 +97,13 @@ OneDSliceDebug <- function(it, x0, w, f, L.lim = -Inf, R.lim = Inf) {
       }
     }
 
-    ## store used intervall
-    int.L[it] <- L
-    int.R[it] <- R
-
     ## sample from [L, R]. Accept, if x_star is in [L, R], else shrink interval
     repeat {
       xstar <- runif(1, L, R)
       if(f(xstar) > u) {
+        ## store used interval
+        int.L[i] <- L
+        int.R[i] <- R
         x[i] <- xstar
         break
       }
