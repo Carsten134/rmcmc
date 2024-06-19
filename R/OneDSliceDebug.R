@@ -61,8 +61,10 @@ OneDSliceDebug <- function(it, x0, w, f, L.lim = -Inf, R.lim = Inf) {
   ## Vector of simulated data:
   x <- numeric(it)
   x[1] <- x0
-  int.L <- numeric(it-1)
-  int.R <- numeric(it-1)
+  int.L <- numeric(it)
+  int.R <- numeric(it)
+  int.L[1]  <- x0
+  int.R[1] <- x0
 
   for(i in 2:it) {
     ## uniformly generate auxiliary variable
@@ -96,8 +98,8 @@ OneDSliceDebug <- function(it, x0, w, f, L.lim = -Inf, R.lim = Inf) {
     }
 
     ## store used intervall
-    int.L[it-1] <- L
-    int.R[it-1] <- R
+    int.L[it] <- L
+    int.R[it] <- R
 
     ## sample from [L, R]. Accept, if x_star is in [L, R], else shrink interval
     repeat {
