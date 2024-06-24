@@ -1,6 +1,7 @@
-#' @title One D slice implementation
+#' @title One D slice implementation with intervalls
 #' @description
 #' This implementation does not need a function to determine the reverse image. Instead holistic techniques will be used, similar to the accept reject condition.
+#' This implementation is a debug version of the original. Additionally to the sample it returns the interval bounds.
 #'
 #' @param it integer: number of iterations (or sample size)
 #' @param x0 numeric: starting value
@@ -55,11 +56,15 @@
 #'
 #'
 #'
-OneDSlice <- function(it, x0, w, f, L.lim = -Inf, R.lim = Inf) {
+OneDSliceDebug <- function(it, x0, w, f, L.lim = -Inf, R.lim = Inf) {
   #browser()
   ## Vector of simulated data:
   x <- numeric(it)
   x[1] <- x0
+  int.L <- numeric(it)
+  int.R <- numeric(it)
+  int.L[1]  <- x0
+  int.R[1] <- x0
 
   for(i in 2:it) {
     ## uniformly generate auxiliary variable
@@ -96,6 +101,9 @@ OneDSlice <- function(it, x0, w, f, L.lim = -Inf, R.lim = Inf) {
     repeat {
       xstar <- runif(1, L, R)
       if(f(xstar) > u) {
+        ## store used interval
+        int.L[i] <- L
+        int.R[i] <- R
         x[i] <- xstar
         break
       }
@@ -106,5 +114,10 @@ OneDSlice <- function(it, x0, w, f, L.lim = -Inf, R.lim = Inf) {
     }
 
   }
-  return(x)
+
+  result <- data.frame(x = x,
+                       int.L = int.L,
+                       int.R = int.R)
+
+  return(result)
 }

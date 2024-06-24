@@ -40,6 +40,12 @@ gibbs <- function(cond, init, n) {
   k <- length(cond)
   sample_raw <- numeric(k*n)
 
+  # take initial values into the raw sample
+  for (j in 1:k) {
+    sample_raw[j] <- init[[vars[j]]]
+  }
+
+  # flattened generation
   for(i in 2:n) {
     for (j in 1:k) {
       x <- do.call(cond[[vars[j]]], as.list(tail(sample_raw, (k-1))))
