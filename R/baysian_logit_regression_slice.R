@@ -36,7 +36,7 @@ p <- function(beta, y, X, prior, scaling = 1){
 #' @param num_samples numeric: number of samples drawn
 #' @param y numeric: binary classification variable
 #' @param X matrix: regression matrix
-#' @param prior function -> numeric: prior for \eqn{\beta} (default \eqn{beta\sim U(0,1)})
+#' @param prior function -> numeric: prior for \eqn{\beta} (default \eqn{beta\overset{iid}\sim \mathcal N(0,4)}, according to Kruschke (2015) \href{https://books.google.de/books?hl=de&lr=&id=FzvLAwAAQBAJ&oi=fnd&pg=PP1&dq=kruschke+2015+doing+bayesian+data+analysis&ots=ChqpP-vgXM&sig=z-P9IFkyQrkOltp6TTSlXUONRGU&redir_esc=y#v=onepage&q&f=false}{book}
 #' @param scaling numeric: sometimes the floating point representation does not offer enough accuracy for the kernel as values become incereasingly small as the sample size (length of \eqn{y}) increases. Scale them up, if needed.
 #' @param interval_width vector: go to \code{?MVSlice} and look at \code{w} parameter
 #' @param L.lim vector: go to \code{?MVSlice} and look at \code{L.lim} parameter
@@ -82,7 +82,7 @@ p <- function(beta, y, X, prior, scaling = 1){
 #' plot(X[,2],props, type="l")
 #'
 bayes_logit_reg_slice <- function(num_samples, y, X,
-                                 prior = function(beta){as.numeric(all(beta >= 0 & beta <= 1))},
+                                 prior = function(beta){prod(dnorm(beta, 0, 2))},
                                  scaling = 1,
                                  intveral_width = rep(3, length(X[1,])),
                                  L.lim = rep(-Inf, length(X[1,])),

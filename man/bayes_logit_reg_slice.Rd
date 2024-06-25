@@ -9,7 +9,7 @@ bayes_logit_reg_slice(
   y,
   X,
   prior = function(beta) {
-     as.numeric(all(beta >= 0 & beta <= 1))
+     prod(dnorm(beta, 0, 2))
  },
   scaling = 1,
   intveral_width = rep(3, length(X[1, ])),
@@ -25,7 +25,7 @@ bayes_logit_reg_slice(
 
 \item{X}{matrix: regression matrix}
 
-\item{prior}{function -> numeric: prior for \eqn{\beta} (default \eqn{beta\sim U(0,1)})}
+\item{prior}{function -> numeric: prior for \eqn{\beta} (default \eqn{beta\overset{iid}\sim \mathcal N(0,4)}, according to Kruschke (2015) \href{https://books.google.de/books?hl=de&lr=&id=FzvLAwAAQBAJ&oi=fnd&pg=PP1&dq=kruschke+2015+doing+bayesian+data+analysis&ots=ChqpP-vgXM&sig=z-P9IFkyQrkOltp6TTSlXUONRGU&redir_esc=y#v=onepage&q&f=false}{book}}
 
 \item{scaling}{numeric: sometimes the floating point representation does not offer enough accuracy for the kernel as values become incereasingly small as the sample size (length of \eqn{y}) increases. Scale them up, if needed.}
 
