@@ -33,3 +33,5 @@ Right now we have implemented:
 - `gibbs_samping`: gibb's sampling algorithm
 - `simple_slice`: slice sampling for unimodal distributions
 - `OneDSlice`: slice algorithm for univariate distributions
+- `MVSlice`: slice algorithm for multivariate distributions
+- `bayes_logit_reg_slice`: method for bayesian logistic regression
