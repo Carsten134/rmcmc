@@ -46,13 +46,16 @@ gibbs <- function(cond, init, n) {
   }
 
   # flattened generation
-  for(i in 2:n) {
-    for (j in 1:k) {
-      x <- do.call(cond[[vars[j]]], as.list(tail(sample_raw, (k-1))))
-      sample_raw[(k*(i-1)+j)] <- x
+  for(i in 2:n) { # for each observation...
+    for (j in 1:k) { # for each dimension...
+      current <- k*(i-1)+j
+      # condition the density for the dimension on the last k-1 values
+      x <- do.call(cond[[vars[j]]], as.list(sample_raw[(current-(k-1)):(current-1)]))
+
+      # ...and then append the sample
+      sample_raw[current] <- x
     }
   }
-
   sample <- list()
   for(j in 1:length(vars)) {
     sample[[vars[j]]] <- sample_raw[seq(j, k*n, k)]
