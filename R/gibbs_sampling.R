@@ -30,8 +30,8 @@ gibbs <- function(cond, init, n) {
     }
   }
 
-  if (length(cond) != length(init)) {
-    stop("error with given arguments cond and init: They don't have the same length")
+  if (length(cond) != length(init) + 1) {
+    stop("error with given arguments cond and init: too little or too many given values for full conditionals")
   }
 
   ## generating the sample #####################################################

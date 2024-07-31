@@ -7,5 +7,5 @@
 expit(x)
 }
 \description{
-logistic function
+\deqn{\text{expit}(x) = \frac{1}{1+\exp(-x)}}
 }
