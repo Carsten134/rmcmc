@@ -30,7 +30,7 @@ gibbs <- function(cond, init, n) {
     }
   }
 
-  if (length(cond) != length(init) + 1) {
+  if (length(cond) != length(init)) {
     stop("error with given arguments cond and init: too little or too many given values for full conditionals")
   }
 
