@@ -1,5 +1,6 @@
 #' Gibbs MVnormal sampling implementation
 #'
+#' @import condMVNorm
 #' @param n integer for size of sample
 #' @param mu vector for mean values
 #' @param sigma matrix for covariance
@@ -18,7 +19,7 @@ MVNormGibbs <- function(n, mu, simga, init) {
       current <- d*(i-1)+j
       x.given <- sample_raw[(current-(d-1)):(current-1)]
       # condition the density for the dimension on the last k-1 values
-      x <- rcmvnorm(1, mu, sigma,
+      x <- condMVNorm::rcmvnorm(1, mu, sigma,
                     dependent.ind = j,
                     given.ind = (1:d)[-j],
                     X.given = x.given)
